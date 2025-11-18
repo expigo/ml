@@ -42,6 +42,7 @@ This repository is designed for learners at all levels - from beginners to those
 - **04_dimensionality_reduction/**
   - Principal Component Analysis (PCA)
   - t-SNE
+  - UMAP (Uniform Manifold Approximation and Projection)
   - Linear Discriminant Analysis (LDA)
   - Feature Selection Methods
   - [Interview Prep Summary](04_dimensionality_reduction/INTERVIEW_PREP.md)
@@ -127,17 +128,39 @@ The `interview_prep/` directory contains:
 
 ## Installation
 
+This project uses [uv](https://github.com/astral-sh/uv) for fast, reliable Python package management.
+
 ```bash
 # Clone the repository
 git clone <repository-url>
 cd ml
 
-# Create a virtual environment (recommended)
+# Install uv (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create virtual environment and install dependencies
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install all dependencies
+uv pip install -e .
+
+# Generate sample datasets
+python datasets/generate_datasets.py
+
+# Launch Jupyter Notebook
+jupyter notebook
+```
+
+### Alternative: Using pip
+
+```bash
+# Create virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -e .
 
 # Launch Jupyter Notebook
 jupyter notebook
@@ -154,15 +177,18 @@ jupyter notebook
 - SciPy
 - Statsmodels
 - Jupyter
+- XGBoost
+- LightGBM
+- UMAP-learn
 
-See `requirements.txt` for complete list with versions.
+See `pyproject.toml` for complete list with versions.
 
 ## Project Structure
 
 ```
 ml/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
 ├── datasets/
 │   ├── generate_datasets.py
 │   └── ...

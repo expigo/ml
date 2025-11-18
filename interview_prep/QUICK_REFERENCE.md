@@ -35,6 +35,7 @@
 | **GMM** | Clustering | Soft clustering, elliptical | Needs K, assumes Gaussian | Yes |
 | **PCA** | Dimensionality Reduction | Fast, interpretable | Linear only | No |
 | **t-SNE** | Visualization | Non-linear, beautiful plots | Slow, not for prediction | No |
+| **UMAP** | Dim Reduction/Viz | Fast, local+global, scalable | Less interpretable than PCA | No |
 
 ---
 
