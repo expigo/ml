@@ -98,6 +98,16 @@ This repository is designed for learners at all levels - from beginners to those
   - Clustering Metrics (Silhouette Score, Davies-Bouldin Index)
   - [Interview Prep Summary](10_evaluation_metrics/INTERVIEW_PREP.md)
 
+### 11. Imbalanced Learning
+- **11_imbalanced_learning/**
+  - Understanding Imbalance (Imbalance Ratio, Problem Identification)
+  - Resampling Techniques (SMOTE, Undersampling, Oversampling)
+  - Algorithm-Level Approaches (Class Weights, Threshold Tuning)
+  - Ensemble Methods (Balanced Random Forest, EasyEnsemble)
+  - Anomaly Detection for Extreme Imbalance
+  - Evaluation Strategies for Imbalanced Data
+  - [Interview Prep Summary](11_imbalanced_learning/INTERVIEW_PREP.md)
+
 ## Datasets
 
 The `datasets/` directory contains sample datasets used throughout the examples:

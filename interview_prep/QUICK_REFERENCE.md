@@ -107,9 +107,17 @@ A:
 
 **Q: Cross-validation?**
 A: Split data into K folds, train on K-1, validate on 1, repeat K times, average performance.
-- **Stratified K-Fold**: Maintains class distribution (for classification)
-- **Leave-One-Out**: K = n (small datasets)
-- **Time Series**: Use time-based splits (no future data in training)
+- **K-Fold**: Typical K=5 or 10
+- **Stratified K-Fold**: Maintains class distribution (for classification, ALWAYS use for imbalanced!)
+- **Leave-One-Out**: K = n (small datasets, expensive)
+- **Time Series**: TimeSeriesSplit (no future data in training)
+- **Provides**: More robust estimate than single train-test split
+
+**Q: Grid Search vs Random Search?**
+A:
+- **Grid Search**: Exhaustive, tries all combinations, slow, guarantees finding best in grid
+- **Random Search**: Samples randomly, faster, good for many parameters, often 60 trials ≈ full grid
+- **When**: Grid for 2-3 parameters, Random for many parameters or wide ranges
 
 **Q: Regularization?**
 A: Add penalty to loss function to prevent overfitting
@@ -127,11 +135,19 @@ A: Transform features to similar scales
 
 **Q: Handling imbalanced data?**
 A:
-1. Collect more data (minority class)
-2. Resampling: SMOTE (oversample minority), undersample majority
-3. Class weights: Penalize minority errors more
-4. Metrics: Use F1, precision-recall, ROC-AUC (not accuracy)
-5. Anomaly detection: If extremely imbalanced
+1. **Resampling**: SMOTE (creates synthetic minority samples - best!), random oversampling, undersampling
+2. **Class weights**: `class_weight='balanced'` - penalizes minority errors more
+3. **Threshold tuning**: Lower from 0.5 to increase recall
+4. **Ensemble**: Balanced Random Forest, EasyEnsemble
+5. **Metrics**: NEVER use accuracy! Use F1, precision, recall, ROC-AUC, PR-AUC
+6. **Anomaly detection**: For extreme imbalance (IR > 1000)
+7. **Critical**: Apply SMOTE AFTER train-test split (data leakage!), use stratified splits
+
+**Q: SMOTE vs Random Oversampling?**
+A:
+- **Random**: Duplicates exact samples → overfitting
+- **SMOTE**: Creates synthetic samples by interpolating between neighbors → better generalization
+- **SMOTE** is almost always better
 
 **Q: Handling missing data?**
 A:
@@ -180,12 +196,12 @@ A:
 - **GMM**: Soft clustering (probabilities), elliptical, probabilistic
 - **GMM**: More flexible but slower
 
-**Q: PCA vs t-SNE?**
+**Q: PCA vs t-SNE vs UMAP?**
 A:
-- **PCA**: Linear, fast, preserves variance, interpretable
-- **t-SNE**: Non-linear, slow, preserves local structure, visualization only
-- **Use PCA for**: Preprocessing, feature reduction
-- **Use t-SNE for**: Final visualization
+- **PCA**: Linear, fast, preserves variance, interpretable, use for preprocessing
+- **t-SNE**: Non-linear, slow O(n²), preserves local only, visualization ONLY
+- **UMAP**: Non-linear, fast O(n log n), preserves local+global, can transform new data, use for viz AND preprocessing
+- **Use**: PCA for linear preprocessing, UMAP for non-linear (better than t-SNE), t-SNE only if <10k samples and just viz
 
 ### Statistics
 

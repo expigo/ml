@@ -33,6 +33,9 @@ dependencies = [
     # Dimensionality Reduction
     "umap-learn>=0.5.3",
 
+    # Imbalanced Learning
+    "imbalanced-learn>=0.11.0",
+
     # Utilities
     "tqdm>=4.65.0",
     "joblib>=1.2.0",
